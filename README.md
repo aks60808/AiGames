@@ -1,46 +1,19 @@
-# Getting Started with Create React App
+# Tic Tac Toe and Connect Four with MinMax Alpha Beta Pruning Algorithm
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Tic Tac Toe and Connect Four with MinMax Alpha Beta Pruning Algorithm! We offer a fun and challenging game of Tic Tac Toe and Connect Four against a basic algorithm.
 
-## Available Scripts
+## How to Play
 
-In the project directory, you can run:
+To play Tic Tac Toe and Connect Four with MinMax Alpha Beta Pruning Algorithm, you can either play against another player or against the AI. To play against the AI, simply choose your starting move. The AI will use the MinMax Alpha Beta Pruning Algorithm to calculate the best possible move to make every turn.
 
-### `npm start`
+## What is MinMax Alpha Beta Pruning Algorithm?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+MinMax Alpha Beta Pruning Algorithm is an AI algorithm that is used to find the optimal move in a two-player game. This algorithm works by evaluating all possible moves for both players and choosing the best move based on the evaluation. The algorithm uses alpha-beta pruning to minimize the number of possible moves that need to be evaluated. Alpha-beta pruning works by pruning (eliminating) branches of the game tree that cannot possibly lead to a better result. This makes the algorithm more efficient and allows it to play at a higher level than other algorithms.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Why use Alpha Beta Pruning over a basic MinMax algorithm?
 
-### `npm test`
+Alpha-beta pruning is an optimization of the minimax algorithm that can reduce the number of nodes that the algorithm needs to search, thus allowing it to search deeper and more quickly. This optimization can be especially valuable in games such as Connect Four, where the number of possible moves is significantly greater than that of Tic Tac Toe. Without alpha-beta pruning, the minimax algorithm would require a lot more time to search all of the possible moves and outcomes, making it impossible to find the optimal move in a timely manner. Alpha-beta pruning helps Connect Four players to quickly access the best move for any given board state.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How it can be further improved with bitboards
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Bitboards can be used to further improve alpha beta pruning minmax algorithms for Connect Four. Bitboards are a data structure that represent the board state of a game using bits. This allows for faster evaluation of the board state and faster calculation of the next best move. Additionally, bitboards can be used to quickly determine the number of pieces on the board, the empty squares, and the current state of each column. This information can be used to further optimize the alpha beta pruning minmax algorithms, as it allows the algorithm to quickly identify which moves should be explored and which should be discarded. Additionally, bitboards can be used to more quickly detect when a game has been won or lost, allowing for faster convergence on the optimal solution.

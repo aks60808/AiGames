@@ -1,0 +1,26 @@
+
+.minmax-algorithm {
+    font-family: sans-serif;
+    text-align: center;
+    width: 50%;
+    padding: 20px;
+    background-color: #f2f2f2;
+    margin: 0px auto;
+    margin-top: 5vh;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .algorithm-intro {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  
+  .algorithm-games {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }

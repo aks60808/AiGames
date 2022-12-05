@@ -7,6 +7,9 @@ function Nav() {
       <nav>
         <h1 className="navTitle">Games</h1>
         <ul className="nav-links">
+          <Link style={{ color: "#BBB193" }} to="/">
+            <li>Main</li>
+          </Link>
           <Link style={{ color: "#BBB193" }} to="/game/tictactoe">
             <li>Tic Tac Toe</li>
           </Link>
