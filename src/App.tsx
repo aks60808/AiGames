@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ConnectFourGame from "./games/connectfour/dom";
+import TicTacToe from "./games/tictactoe/dom";
+import Nav from "./nav";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<div />} />
+        <Route path="/game/connectfour" element={<ConnectFourGame />} />
+        <Route path="/game/tictactoe" element={<TicTacToe />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
