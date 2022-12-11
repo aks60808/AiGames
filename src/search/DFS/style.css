@@ -1,0 +1,46 @@
+
+.maze-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boardDFS {
+    display: grid;
+    width: 600px;
+    height: 600px;
+    margin-top: 5vh;
+}
+.tileDFS {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 0px;
+    border: 1px solid grey;
+    outline: none;
+}
+
+.wallDFS {
+    background-color: black;
+}
+
+.visitedDFS {
+    background-color: #d1cfe2;
+}
+
+.pathDFS {
+    background-color: #7ec4cf;
+}
+
+.emptyDFS {
+    background-color: white;
+}
+
+.startDFS {
+    background-color: blue;
+}
+.endDFS {
+    background-color: red;
+    border: 2px solid green;
+}
