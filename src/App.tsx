@@ -14,11 +14,14 @@ function App() {
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/maze/BFS" element={<BFSDOM />} />
-          <Route path="/maze/DFS" element={<DFSDOM />} />
-          <Route path="/game/connectfour" element={<ConnectFourGame />} />
-          <Route path="/game/tictactoe" element={<TicTacToe />} />
+          <Route path="AiGames/" element={<MainPage />} />
+          <Route path="AiGames/maze/BFS" element={<BFSDOM />} />
+          <Route path="AiGames/maze/DFS" element={<DFSDOM />} />
+          <Route
+            path="AiGames/game/connectfour"
+            element={<ConnectFourGame />}
+          />
+          <Route path="AiGames/game/tictactoe" element={<TicTacToe />} />
         </Routes>
       </BrowserRouter>
     </>
