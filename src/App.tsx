@@ -4,6 +4,9 @@ import ConnectFourGame from "./games/connectfour/dom";
 import TicTacToe from "./games/tictactoe/dom";
 import Nav from "./nav";
 import "./App.css";
+import BFSDOM from "./search/BFS/dom";
+import DFSDOM from "./search/DFS/dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -12,6 +15,8 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/maze/BFS" element={<BFSDOM />} />
+          <Route path="/maze/DFS" element={<DFSDOM />} />
           <Route path="/game/connectfour" element={<ConnectFourGame />} />
           <Route path="/game/tictactoe" element={<TicTacToe />} />
         </Routes>
