@@ -23,7 +23,23 @@ const BFSDOM = () => {
       const pathFound = bfs.search();
       let num = 0;
       if (pathFound) {
-        const path = bfs.visitedNodes;
+        const path = bfs.path;
+        const searchPath = bfs.searchpath;
+        searchPath.forEach((node) => {
+          if (node !== undefined) {
+            setTimeout(
+              (board) => {
+                board.setVisted(node.row, node.col);
+                const newBoard = new Board(board.start, board.end);
+                newBoard.board = board.board.map((row) => [...row]);
+                setBoard(newBoard); // Call setBoard here to update the board state and trigger a re-render
+              },
+              20 * num,
+              board
+            );
+            num++;
+          }
+        });
         path.forEach((node) => {
           if (node !== undefined) {
             setTimeout(

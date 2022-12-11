@@ -26,14 +26,11 @@
 }
 
 .visitedBFS {
-    background-color: #84aba4;
+    background-color: #d1cfe2;
 }
 
 .pathBFS {
-    background-color: #344441;
-}
-.path2BFS {
-    background-color: #4bbca7;
+    background-color: #7ec4cf;
 }
 
 .emptyBFS {
