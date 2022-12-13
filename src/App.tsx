@@ -2,21 +2,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./components/root/domt";
 import ConnectFourGame from "./games/connectfour/dom";
 import TicTacToe from "./games/tictactoe/dom";
-import Nav from "./nav";
+import NAVDOM from "./nav";
 import "./App.css";
-import BFSDOM from "./search/BFS/dom";
-import DFSDOM from "./search/DFS/dom";
+import SEARCHDOM from "./search/searchDom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Nav />
+        <NAVDOM />
         <Routes>
           <Route path="AiGames/" element={<MainPage />} />
-          <Route path="AiGames/maze/BFS" element={<BFSDOM />} />
-          <Route path="AiGames/maze/DFS" element={<DFSDOM />} />
+          <Route path="AiGames/maze/" element={<SEARCHDOM />} />
           <Route
             path="AiGames/game/connectfour"
             element={<ConnectFourGame />}

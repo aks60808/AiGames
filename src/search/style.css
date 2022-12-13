@@ -5,13 +5,12 @@
     align-items: center;
 }
 
-.boardDFS {
+.boardSearch {
     display: grid;
-    width: 600px;
-    height: 600px;
-    margin-top: 5vh;
+    width: 800px;
+    height: 800px;
 }
-.tileDFS {
+.tile {
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -21,26 +20,26 @@
     outline: none;
 }
 
-.wallDFS {
+.wall {
     background-color: black;
 }
 
-.visitedDFS {
+.visited {
     background-color: #d1cfe2;
 }
 
-.pathDFS {
+.path {
     background-color: #7ec4cf;
 }
 
-.emptyDFS {
+.empty {
     background-color: white;
 }
 
-.startDFS {
+.start {
     background-color: blue;
 }
-.endDFS {
+.end {
     background-color: red;
-    border: 2px solid green;
+    border: 2px solid black;
 }
