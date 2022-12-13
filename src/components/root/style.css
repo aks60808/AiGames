@@ -14,13 +14,25 @@
   .algorithm-intro {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.5;
   }
   
   .algorithm-games {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    line-height: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .SearchIntro{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
     line-height: 1.5;
+  }
+  .SearchInfo{
+    font-size: 1rem;
+    line-height: 1;
     margin-top: 10px;
     margin-bottom: 10px;
   }
