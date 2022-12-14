@@ -2,6 +2,8 @@
 
 This is a simple React project that demonstrates the implementation of a minimax alpha-beta algorithm for the games of Tic-Tac-Toe and Connect Four. The project also includes an example of using breadth-first search (BFS) and depth-first search (DFS) to solve a maze.
 
+[Live demo](https://gravender.github.io/AiGames/)
+
 ## Getting Started
 
 To get started, clone the repository and install the dependencies:
