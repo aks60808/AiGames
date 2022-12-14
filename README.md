@@ -6,8 +6,8 @@ This is a simple React project that demonstrates the implementation of a minimax
 
 To get started, clone the repository and install the dependencies:
 ```
-git clone https://github.com/user/react-tic-tac-toe-connect-four.git
-cd react-tic-tac-toe-connect-four
+git clone https://github.com/Gravender/AiGames
+cd AiGames
 npm install
 ```
 Once the dependencies are installed, you can run the project in development mode with:
