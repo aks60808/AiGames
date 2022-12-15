@@ -6,6 +6,7 @@
 
 function minmaxAlphaBeta(state: any, player: any, depth: any): any {
   // Initialize the best move to null
+  console.time("algo");
   let bestMove: any = null;
   let bestScore = 5;
   // Initialize the best score to a very small number
@@ -43,7 +44,7 @@ function minmaxAlphaBeta(state: any, player: any, depth: any): any {
       }
     }
   }
-
+  console.timeEnd("algo");
   // Return the best move
   return bestMove;
 }
