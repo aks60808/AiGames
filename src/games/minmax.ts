@@ -17,6 +17,7 @@ function minmaxAlphaBeta(state: any, player: any, depth: any): any {
 
   // Loop over all possible moves
   for (let move of state.possibleMoves) {
+    if (!state.canPlay(move)) continue;
     if (player === "Max") {
       // Make the move
       state.makeMove(move);
@@ -65,6 +66,7 @@ function minmaxAlphaBetaRec(
     // Loop over all possible moves
 
     for (let move of state.possibleMoves) {
+      if (!state.canPlay(move)) continue;
       // Make the move on the board
       state.makeMove(move);
 
@@ -90,6 +92,7 @@ function minmaxAlphaBetaRec(
 
     // Loop over all possible moves
     for (let move of state.possibleMoves) {
+      if (!state.canPlay(move)) continue;
       // Make the move on the board
       state.makeMove(move);
 

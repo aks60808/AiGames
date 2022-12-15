@@ -40,6 +40,9 @@ export class TicTacToe {
       return !(move.x === nmove.x && move.y === nmove.y);
     });
   }
+  public canPlay() {
+    return true;
+  }
   public getBoard() {
     return this.board;
   }

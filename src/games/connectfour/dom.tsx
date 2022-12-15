@@ -26,6 +26,9 @@ class ConnectFourGame extends React.Component<Props, State> {
   }
   // Checks if the game is over, returns true if game is over.
   isGameOver = () => {
+    if (this.ConnectFour.isGameOver()) {
+      console.log(this.ConnectFour.info());
+    }
     return this.ConnectFour.isGameOver();
   };
   // Gets the score of the game, returns a string.
@@ -41,25 +44,21 @@ class ConnectFourGame extends React.Component<Props, State> {
   };
   // Makes a move based on the given column, updates the state.
   makeMove = (col: number) => {
-    if (!this.isGameOver() && this.ConnectFour.getTurn() === 0) {
+    if (
+      !this.isGameOver() &&
+      this.ConnectFour.canPlay(col) &&
+      this.state.turn === 0
+    ) {
       this.ConnectFour.makeMove(col);
+      if (!this.isGameOver()) {
+        const bestMove = minmaxAlphaBeta(this.ConnectFour, "Min", 8);
+        this.ConnectFour.makeMove(bestMove);
+      }
       this.setState({
         board: this.ConnectFour.getBoard(),
         turn: this.ConnectFour.getTurn(),
         moves: this.ConnectFour.possibleMoves,
       });
-      if (!this.isGameOver()) {
-        const bestMove = minmaxAlphaBeta(this.ConnectFour, "Min", 9);
-        const move = () => {
-          this.ConnectFour.makeMove(bestMove);
-          this.setState({
-            board: this.ConnectFour.getBoard(),
-            turn: this.ConnectFour.getTurn(),
-            moves: this.ConnectFour.possibleMoves,
-          });
-        };
-        setTimeout(move, 0);
-      }
     }
   };
   // Resets the game state.
