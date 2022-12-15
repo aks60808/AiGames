@@ -41,7 +41,7 @@ class ConnectFourGame extends React.Component<Props, State> {
   };
   // Makes a move based on the given column, updates the state.
   makeMove = (col: number) => {
-    if (!this.isGameOver()) {
+    if (!this.isGameOver() && this.ConnectFour.getTurn() === 0) {
       this.ConnectFour.makeMove(col);
       this.setState({
         board: this.ConnectFour.getBoard(),
@@ -58,7 +58,7 @@ class ConnectFourGame extends React.Component<Props, State> {
             moves: this.ConnectFour.possibleMoves,
           });
         };
-        setTimeout(move, 200);
+        setTimeout(move, 0);
       }
     }
   };
