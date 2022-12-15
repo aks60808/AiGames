@@ -31,9 +31,9 @@ class ConnectFourGame extends React.Component<Props, State> {
   // Gets the score of the game, returns a string.
   getScore = () => {
     const score = this.ConnectFour.getScore();
-    if (score === 1) {
+    if (score > 0) {
       return "Red Won!";
-    } else if (score === -1) {
+    } else if (score < 0) {
       return "Yellow Won!";
     } else {
       return "You tied";
@@ -49,7 +49,7 @@ class ConnectFourGame extends React.Component<Props, State> {
         moves: this.ConnectFour.possibleMoves,
       });
       if (!this.isGameOver()) {
-        const bestMove = minmaxAlphaBeta(this.ConnectFour, "Min", 8);
+        const bestMove = minmaxAlphaBeta(this.ConnectFour, "Min", 9);
         const move = () => {
           this.ConnectFour.makeMove(bestMove);
           this.setState({

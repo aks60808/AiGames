@@ -2,6 +2,7 @@ export class ConnectFour {
   private board: string[][];
   private turn: number;
   private moves: number;
+  private moveOrder: number[];
   public possibleMoves: number[];
 
   constructor() {
@@ -13,11 +14,11 @@ export class ConnectFour {
       ["", "", "", "", "", "", ""],
       ["", "", "", "", "", "", ""],
       ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
     ];
     this.turn = 0;
     this.moves = 0;
-    this.possibleMoves = [0, 1, 2, 3, 4, 5, 6];
+    this.possibleMoves = [3, 2, 4, 1, 5, 6, 0];
+    this.moveOrder = [3, 2, 4, 1, 5, 6, 0];
   }
 
   // makeMove: given a column, place a piece in that columns
@@ -112,19 +113,29 @@ export class ConnectFour {
   // getScore
   getScore(): number {
     //Check rows
+    let score = 0;
+    if (this.moves === 42) return 0;
     for (let row = 0; row < 6; row++) {
       for (let col = 0; col < 4; col++) {
         if (
           this.board[row][col] !== "" &&
           this.board[row][col] === this.board[row][col + 1] &&
-          this.board[row][col] === this.board[row][col + 2] &&
-          this.board[row][col] === this.board[row][col + 3]
+          this.board[row][col] === this.board[row][col + 2]
         ) {
-          if (this.board[row][col] === "Red") {
-            return 1;
-          } else {
-            return -1;
-          }
+          if (this.board[row][col] === this.board[row][col + 3])
+            if (this.board[row][col] === "Red") {
+              if (this.board[row][col] === this.board[row][col + 3]) {
+                score += 5 - this.moves * 0.01;
+              } else {
+                score += 1 - this.moves * 0.01;
+              }
+            } else {
+              if (this.board[row][col] === this.board[row][col + 3]) {
+                score += -5 + this.moves * 0.01;
+              } else {
+                score += -1 + this.moves * 0.01;
+              }
+            }
         }
       }
     }
@@ -135,13 +146,22 @@ export class ConnectFour {
         if (
           this.board[row][col] !== "" &&
           this.board[row][col] === this.board[row + 1][col] &&
-          this.board[row][col] === this.board[row + 2][col] &&
-          this.board[row][col] === this.board[row + 3][col]
+          this.board[row][col] === this.board[row + 2][col]
         ) {
           if (this.board[row][col] === "Red") {
-            return 1;
-          } else {
-            return -1;
+            if (this.board[row][col] === "Red") {
+              if (this.board[row][col] === this.board[row + 3][col]) {
+                score += 5 - this.moves * 0.01;
+              } else {
+                score += 1 - this.moves * 0.01;
+              }
+            } else {
+              if (this.board[row][col] === this.board[row + 3][col]) {
+                score += -5 + this.moves * 0.01;
+              } else {
+                score += -1 + this.moves * 0.01;
+              }
+            }
           }
         }
       }
@@ -153,13 +173,20 @@ export class ConnectFour {
         if (
           this.board[row][col] !== "" &&
           this.board[row][col] === this.board[row + 1][col + 1] &&
-          this.board[row][col] === this.board[row + 2][col + 2] &&
-          this.board[row][col] === this.board[row + 3][col + 3]
+          this.board[row][col] === this.board[row + 2][col + 2]
         ) {
           if (this.board[row][col] === "Red") {
-            return 1;
+            if (this.board[row][col] === this.board[row + 3][col + 3]) {
+              score += 5 - this.moves * 0.01;
+            } else {
+              score += 1 - this.moves * 0.01;
+            }
           } else {
-            return -1;
+            if (this.board[row][col] === this.board[row + 3][col + 3]) {
+              score += -5 + this.moves * 0.01;
+            } else {
+              score += -1 + this.moves * 0.01;
+            }
           }
         }
       }
@@ -170,18 +197,25 @@ export class ConnectFour {
         if (
           this.board[row][col] !== "" &&
           this.board[row][col] === this.board[row + 1][col - 1] &&
-          this.board[row][col] === this.board[row + 2][col - 2] &&
-          this.board[row][col] === this.board[row + 3][col - 3]
+          this.board[row][col] === this.board[row + 2][col - 2]
         ) {
           if (this.board[row][col] === "Red") {
-            return 1;
+            if (this.board[row][col] === this.board[row + 3][col - 3]) {
+              score += 5 - this.moves * 0.01;
+            } else {
+              score += 1 - this.moves * 0.01;
+            }
           } else {
-            return -1;
+            if (this.board[row][col] === this.board[row + 3][col - 3]) {
+              score += -5 + this.moves * 0.01;
+            } else {
+              score += -1 + this.moves * 0.01;
+            }
           }
         }
       }
     }
-    return 0;
+    return score;
   }
 
   // undoMove: remove the last move
@@ -196,6 +230,10 @@ export class ConnectFour {
     if (!this.possibleMoves.includes(column)) {
       this.possibleMoves.push(column);
     }
+    this.possibleMoves = this.moveOrder.filter((element) =>
+      this.possibleMoves.includes(element)
+    );
+    this.moves--;
   }
   resetGame(): void {
     this.board = [
@@ -205,9 +243,9 @@ export class ConnectFour {
       ["", "", "", "", "", "", ""],
       ["", "", "", "", "", "", ""],
       ["", "", "", "", "", "", ""],
-      ["", "", "", "", "", "", ""],
     ];
     this.turn = 0;
-    this.possibleMoves = [0, 1, 2, 3, 4, 5, 6];
+    this.moves = 0;
+    this.possibleMoves = [3, 2, 4, 1, 5, 6, 0];
   }
 }
