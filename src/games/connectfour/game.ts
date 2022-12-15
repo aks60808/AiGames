@@ -17,10 +17,10 @@ export class ConnectFour {
     this.moveOrder = [3, 2, 4, 1, 5, 6, 0];
   }
   canPlay(column: number): boolean {
-    if (column === 0) {
-      return this.height[0] < 5;
-    }
-    return this.height[column] % 7 < 6;
+    const TOP = new Long(
+      0b1000000_1000000_1000000_1000000_1000000_1000000_1000000
+    );
+    return TOP.and(Long.UONE.shiftLeft(this.height[column])).equals(0);
   }
   // makeMove: given a column, place a piece in that columns
   makeMove(column: number): void {
@@ -41,9 +41,12 @@ export class ConnectFour {
   }
   getPossibleMoves() {
     const moves: number[] = [];
-    const TOP = 0b1000000_1000000_1000000_1000000_1000000_1000000_1000000;
+    const TOP = new Long(
+      0b1000000_1000000_1000000_1000000_1000000_1000000_1000000
+    );
     for (let col = 0; col <= 6; col++) {
-      if ((TOP & (1 << this.height[col])) === 0) moves.push(col);
+      if (TOP.and(Long.UONE.shiftLeft(this.height[col])).equals(0))
+        moves.push(col);
     }
     let moves2 = this.moveOrder.filter((move) => moves.includes(move));
     return moves2;
@@ -117,8 +120,8 @@ export class ConnectFour {
   getScore(): number {
     //Check rows
     let score = 0;
-    if (this.isWin(this.bitboards[0])) score += 1 - 0.001 * this.counter;
-    if (this.isWin(this.bitboards[1])) score -= 1 - 0.001 * this.counter;
+    if (this.isWin(this.bitboards[0])) score = 22 - (1 - this.counter / 2);
+    if (this.isWin(this.bitboards[1])) score = -(22 - (1 - this.counter / 2));
     return score;
   }
 
