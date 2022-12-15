@@ -5,46 +5,49 @@
 //evaluated using the MINMAX algorithm with alpha-beta pruning.
 import { TranspositionTable } from "./transpotionTable";
 const table = new TranspositionTable();
-function minmaxAlphaBeta(state: any, player: any, depth: any): any {
+function minmaxAlphaBeta(state: any, player: any, maxDepth: any): any {
   // Initialize the best move to null
   console.time("algo");
   let bestMove: any = null;
   let bestScore = 5;
   // Initialize the best score to a very small number
-  if (player === "Max") {
-    bestScore = -Infinity;
-  } else {
-    bestScore = Infinity;
-  }
-
-  // Loop over all possible moves
-  for (let move of state.possibleMoves) {
-    if (!state.canPlay(move)) continue;
+  for (let depth = 1; depth <= maxDepth; depth++) {
+    // Initialize the best score to a very small number
     if (player === "Max") {
+      bestScore = -Infinity;
+    } else {
+      bestScore = Infinity;
+    }
+
+    // Loop over all possible moves
+    for (let move of state.possibleMoves) {
+      if (!state.canPlay(move)) continue;
+
       // Make the move
       state.makeMove(move);
-      // Compute the score for this move
-      let score = minmaxAlphaBetaRec(state, "Min", depth, -Infinity, Infinity);
+
+      // Compute the score for this move using null window search
+      let score = minmaxAlphaBetaRec(
+        state,
+        player === "Max" ? "Min" : "Max",
+        depth - 1,
+        -Infinity,
+        Infinity
+      );
+
       // Undo the move
       state.undoMove(move);
-      if (score > bestScore) {
+
+      if (player === "Max" && score > bestScore) {
         bestScore = score;
         bestMove = move;
-      }
-    } else {
-      // Make the move
-      state.makeMove(move);
-      // Compute the score for this move
-      let score = minmaxAlphaBetaRec(state, "Max", depth, -Infinity, Infinity);
-      //console.log(`move: ${move} score: ${score}`);
-      // Undo the move
-      state.undoMove(move);
-      if (score < bestScore) {
+      } else if (player !== "Max" && score < bestScore) {
         bestScore = score;
         bestMove = move;
       }
     }
   }
+
   console.timeEnd("algo");
   // Return the best move
   console.log(table);
@@ -58,10 +61,16 @@ function minmaxAlphaBetaRec(
   alpha: number,
   beta: number
 ): number {
-  const storedScore = table.get(state);
+  const storedScore = table.get(state.getBoard(player === "Max" ? 1 : 0));
+  let bestScore = 0;
+  if (player === "Max") {
+    bestScore = -Infinity;
+  } else {
+    bestScore = Infinity;
+  }
   if (storedScore !== undefined) {
     // Return the stored score if it exists
-    return storedScore;
+    bestScore = storedScore;
   }
   // If the game is over, return the score
   if (state.isGameOver() || depth === 0) {
@@ -69,8 +78,6 @@ function minmaxAlphaBetaRec(
   }
   // Initialize the best score to a very small number
   if (player === "Max") {
-    let bestScore = -Infinity;
-
     // Loop over all possible moves
 
     for (let move of state.possibleMoves) {
@@ -98,8 +105,6 @@ function minmaxAlphaBetaRec(
 
   // Minimizing player
   else {
-    let bestScore = Infinity;
-
     // Loop over all possible moves
     for (let move of state.possibleMoves) {
       if (!state.canPlay(move)) continue;

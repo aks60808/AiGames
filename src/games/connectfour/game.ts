@@ -45,7 +45,7 @@ export class ConnectFour {
       0b1000000_1000000_1000000_1000000_1000000_1000000_1000000
     );
     for (let col = 0; col <= 6; col++) {
-      if (TOP.and(Long.UONE.shiftLeft(this.height[col])).equals(0))
+      if (TOP.and(Long.ONE.shiftLeft(this.height[col])).equals(0))
         moves.push(col);
     }
     let moves2 = this.moveOrder.filter((move) => moves.includes(move));
@@ -123,8 +123,8 @@ export class ConnectFour {
   getScore(): number {
     //Check rows
     let score = 0;
-    if (this.isWin(this.bitboards[0])) score = 22 - (1 - this.counter / 2);
-    if (this.isWin(this.bitboards[1])) score = -(22 - (1 - this.counter / 2));
+    if (this.isWin(this.bitboards[0])) score += 30 - (1 - this.counter / 2);
+    if (this.isWin(this.bitboards[1])) score -= 30 - (1 - this.counter / 2);
     return score;
   }
 
