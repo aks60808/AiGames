@@ -86,7 +86,13 @@ function minmaxAlphaBetaRec(
       state.makeMove(move);
 
       // Recursively call the MinMax algorithm for the next player
-      let score = minmaxAlphaBetaRec(state, "Min", depth - 1, alpha, beta);
+      let score = minmaxAlphaBetaRec(
+        state,
+        "Min",
+        depth - 1,
+        bestScore,
+        bestScore + 1
+      );
 
       // Take the max score from all the possible moves
       bestScore = Math.max(score, bestScore);
@@ -112,7 +118,13 @@ function minmaxAlphaBetaRec(
       state.makeMove(move);
 
       // Recursively call the MinMax algorithm for the next player
-      let score = minmaxAlphaBetaRec(state, "Max", depth - 1, alpha, beta);
+      let score = minmaxAlphaBetaRec(
+        state,
+        "Max",
+        depth - 1,
+        bestScore - 1,
+        bestScore
+      );
 
       // Take the min score from all the possible moves
       bestScore = Math.min(score, bestScore);
