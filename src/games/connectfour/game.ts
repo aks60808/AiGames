@@ -51,7 +51,10 @@ export class ConnectFour {
     let moves2 = this.moveOrder.filter((move) => moves.includes(move));
     return moves2;
   }
-  public getBoard() {
+  public getBoard(player: number) {
+    return this.bitboards[player].toString();
+  }
+  public getBoardPrint() {
     let board = [
       ["", "", "", "", "", "", ""],
       ["", "", "", "", "", "", ""],

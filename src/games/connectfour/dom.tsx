@@ -19,7 +19,7 @@ class ConnectFourGame extends React.Component<Props, State> {
     super(props);
     this.ConnectFour = new ConnectFour();
     this.state = {
-      board: this.ConnectFour.getBoard(),
+      board: this.ConnectFour.getBoardPrint(),
       turn: this.ConnectFour.getTurn(),
       moves: this.ConnectFour.possibleMoves,
     };
@@ -51,11 +51,11 @@ class ConnectFourGame extends React.Component<Props, State> {
     ) {
       this.ConnectFour.makeMove(col);
       if (!this.isGameOver()) {
-        const bestMove = minmaxAlphaBeta(this.ConnectFour, "Min", 7);
+        const bestMove = minmaxAlphaBeta(this.ConnectFour, "Min", 8);
         this.ConnectFour.makeMove(bestMove);
       }
       this.setState({
-        board: this.ConnectFour.getBoard(),
+        board: this.ConnectFour.getBoardPrint(),
         turn: this.ConnectFour.getTurn(),
         moves: this.ConnectFour.possibleMoves,
       });
@@ -65,7 +65,7 @@ class ConnectFourGame extends React.Component<Props, State> {
   resetGame = () => {
     this.ConnectFour.resetGame();
     this.setState({
-      board: this.ConnectFour.getBoard(),
+      board: this.ConnectFour.getBoardPrint(),
       turn: this.ConnectFour.getTurn(),
       moves: this.ConnectFour.possibleMoves,
     });

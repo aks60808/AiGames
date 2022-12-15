@@ -3,7 +3,8 @@
 //as well as the current player's turn (X or O).
 //The function returns the best move for the current player,
 //evaluated using the MINMAX algorithm with alpha-beta pruning.
-
+import { TranspositionTable } from "./transpotionTable";
+const table = new TranspositionTable();
 function minmaxAlphaBeta(state: any, player: any, depth: any): any {
   // Initialize the best move to null
   console.time("algo");
@@ -46,6 +47,7 @@ function minmaxAlphaBeta(state: any, player: any, depth: any): any {
   }
   console.timeEnd("algo");
   // Return the best move
+  console.log(table);
   return bestMove;
 }
 
@@ -56,9 +58,14 @@ function minmaxAlphaBetaRec(
   alpha: number,
   beta: number
 ): number {
+  const storedScore = table.get(state);
+  if (storedScore !== undefined) {
+    // Return the stored score if it exists
+    return storedScore;
+  }
   // If the game is over, return the score
   if (state.isGameOver() || depth === 0) {
-    return state.getScore() + (player === "Max" ? depth * -0.1 : depth * 0.1);
+    return state.getScore();
   }
   // Initialize the best score to a very small number
   if (player === "Max") {
@@ -84,6 +91,8 @@ function minmaxAlphaBetaRec(
       // Prune branches if alpha >= beta
       if (beta <= alpha) break;
     }
+    // Store the computed score in the transposition table
+    table.set(state.getBoard(player === "Max" ? 1 : 0), bestScore);
     return bestScore;
   }
 
@@ -110,6 +119,8 @@ function minmaxAlphaBetaRec(
       // Prune branches if alpha >= beta
       if (beta <= alpha) break;
     }
+    // Store the computed score in the transposition table
+    table.set(state.getBoard(player === "Max" ? 1 : 0), bestScore);
     return bestScore;
   }
 }
