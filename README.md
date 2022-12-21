@@ -7,16 +7,21 @@ This is a simple React project that demonstrates the implementation of a minimax
 ## Getting Started
 
 To get started, clone the repository and install the dependencies:
+
 ```
 git clone https://github.com/Gravender/AiGames
 cd AiGames
 npm install
 ```
+
 Once the dependencies are installed, you can run the project in development mode with:
+
 ```
 npm run start
 ```
+
 This will start the development server and open the project in your default browser.
+
 ### How to Play
 
 To play Tic Tac Toe and Connect Four with MinMax Alpha Beta Pruning Algorithm, you can either play against another player or against the AI. To play against the AI, simply choose your starting move. The AI will use the MinMax Alpha Beta Pruning Algorithm to calculate the best possible move to make every turn.
@@ -29,7 +34,11 @@ MinMax Alpha Beta Pruning Algorithm is an AI algorithm that is used to find the 
 
 Alpha-beta pruning is an optimization of the minimax algorithm that can reduce the number of nodes that the algorithm needs to search, thus allowing it to search deeper and more quickly. This optimization can be especially valuable in games such as Connect Four, where the number of possible moves is significantly greater than that of Tic Tac Toe. Without alpha-beta pruning, the minimax algorithm would require a lot more time to search all of the possible moves and outcomes, making it impossible to find the optimal move in a timely manner. Alpha-beta pruning helps Connect Four players to quickly access the best move for any given board state.
 
-### BFS (Breadth-First Search) 
+## Search Algorithms
+
+![](./demo_videos/SearchDemo.gif)
+
+### BFS (Breadth-First Search)
 
 BFS (Breadth-First Search) is an algorithm that is used to traverse a graph or a tree data structure. It starts at the root node and explores the neighbor nodes first, before moving to the next level neighbors.
 
@@ -42,7 +51,7 @@ The algorithm works in the following steps:
 
 The advantage of BFS is that it guarantees that the shortest path from the root node to any other node will be found. It is commonly used in graph traversal problems, such as finding the shortest path in a maze or finding all connected components in a graph.
 
-### DFS (Depth-First Search) 
+### DFS (Depth-First Search)
 
 DFS, or Depth-First Search, is an algorithm used to traverse a tree or graph data structure. It involves starting at the root node and exploring as far as possible along each branch before backtracking and exploring the next branch.
 
