@@ -13,8 +13,9 @@ export default class Astar {
   closelist: Node[];
   start: Node;
   end: Node;
-  path: Node[];
-  searchpath: Node[];
+  path: { row: number; col: number }[];
+  searchpath: { row: number; col: number }[];
+
   constructor(board: Board) {
     this.board = board;
     this.openlist = [];
@@ -56,12 +57,12 @@ export default class Astar {
       });
       this.openlist.splice(currentIndex, 1);
       this.closelist.push(currentNode);
-      this.searchpath.push(currentNode);
+      this.searchpath.push({ row: currentNode.row, col: currentNode.col });
       if (currentNode) {
         if (this.isAtEnd(currentNode)) {
           let current: Node | null = currentNode;
           while (current) {
-            this.path.push(current);
+            this.path.push({ row: current.row, col: current.col });
             current = current.parent;
           }
           this.path = this.path.reverse();

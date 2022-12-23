@@ -56,11 +56,15 @@ export class Board {
   }
 
   setStart(row: number, col: number): void {
+    this.board[this.start[0]][this.start[1]] = -1;
     this.start = [row, col];
+    this.board[row][col] = this.startNum;
   }
 
   setEnd(row: number, col: number): void {
+    this.board[this.end[0]][this.end[1]] = -1;
     this.end = [row, col];
+    this.board[row][col] = this.endNum;
   }
   setVisted(row: number, col: number): void {
     if (
