@@ -7,7 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 function NAVDOM() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+    <Navbar bg="dark" variant="dark" expand="sm" collapseOnSelect>
       <Container>
         <Link to="AiGames/" className="nav-item">
           <Navbar.Brand>Games</Navbar.Brand>

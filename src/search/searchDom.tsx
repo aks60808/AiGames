@@ -11,19 +11,23 @@ import "./style.css";
 
 const SEARCHDOM = () => {
   const [board, setBoard] = useState(new Board([0, 0], [9, 9]));
+  const [boardSize, setBoardSize] = useState(10);
   const [pathFound, setPathFound] = useState(false);
   const [searchAlgo, setSearchAlgo] = useState("BFS");
 
-  useEffect(() => {
-    const b = new Board([0, 0], [18, 18]);
-    b.createMaze(20, 20);
-    for (let i = 0; i < 200; i++) {
+  const generateMaze = (size: number) => {
+    const b = new Board([0, 0], [size - 1, size - 1]);
+    b.createMaze(size, size);
+    for (let i = 0; i < (size * size) / 2; i++) {
       const x = Math.floor(Math.random() * b.board.length);
       const y = Math.floor(Math.random() * b.board[0].length);
       b.setWall(x, y);
     }
     setBoard(b);
-  }, []);
+  };
+  useEffect(() => {
+    generateMaze(boardSize);
+  }, [boardSize]);
   const showSearch = (path: any, num: number, type: String) => {
     path.forEach((node: any) => {
       if (node !== undefined) {
@@ -38,7 +42,7 @@ const SEARCHDOM = () => {
             newBoard.board = board.board.map((row) => [...row]);
             setBoard(newBoard); // Call setBoard here to update the board state and trigger a re-render
           },
-          20 * num,
+          15 * num,
           board
         );
         num++;
@@ -90,7 +94,13 @@ const SEARCHDOM = () => {
     return (
       <Navbar
         bg="secondary"
-        style={{ paddingLeft: "10px", marginTop: "1.5vh", width: "800px" }}
+        variant="dark"
+        expand="sm"
+        collapseOnSelect
+        style={{
+          paddingLeft: "10px",
+          width: "min(85vw,85vh)",
+        }}
       >
         <DropdownButton
           id="dropdown-basic-button"
@@ -136,6 +146,17 @@ const SEARCHDOM = () => {
         >
           Search
         </Button>
+        <div className="form-group range-wrap">
+          <input
+            type="range"
+            className="form-control-range"
+            id="customRange1"
+            min="10"
+            max="40"
+            value={boardSize}
+            onChange={(e) => setBoardSize(parseInt(e.target.value))}
+          />
+        </div>
       </Navbar>
     );
   };

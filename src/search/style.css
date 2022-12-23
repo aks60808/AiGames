@@ -7,8 +7,8 @@
 
 .boardSearch {
     display: grid;
-    width: 800px;
-    height: 800px;
+    width: min(85vw,85vh);
+    height: min(85vw,85vh);
 }
 .tile {
     width: 100%;
