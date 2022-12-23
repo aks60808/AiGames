@@ -92,7 +92,7 @@ export default class BFS {
       row < this.board.board.length &&
       col >= 0 &&
       col < this.board.board[0].length &&
-      this.board.board[row][col] !== 5
+      this.board.board[row][col] !== this.board.wall
     );
   }
 

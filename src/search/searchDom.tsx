@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import BFS from "../search/BFS/search";
 import DFS from "../search/DFS/search";
+import Astar from "../search/AStar/search";
 import "./style.css";
 
 const SEARCHDOM = () => {
@@ -49,8 +50,10 @@ const SEARCHDOM = () => {
     let search = null;
     if (searchAlgo === "BFS") {
       search = new BFS(board);
-    } else {
+    } else if (searchAlgo === "DFS") {
       search = new DFS(board);
+    } else {
+      search = new Astar(board);
     }
     const pathFound = search.search();
     let num = showSearch(search.searchpath, 0, "visited");
@@ -109,6 +112,14 @@ const SEARCHDOM = () => {
             }}
           >
             DFS
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => {
+              clearBoard();
+              setSearchAlgo("A-Star");
+            }}
+          >
+            A-Star
           </Dropdown.Item>
         </DropdownButton>
         <Button
