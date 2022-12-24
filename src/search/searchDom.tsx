@@ -29,8 +29,14 @@ const SEARCHDOM = () => {
     generateMaze(boardSize);
   }, [boardSize]);
   const showSearch = (path: any, num: number, type: String) => {
+    let visitedNodes: any[] = [];
     path.forEach((node: any) => {
-      if (node !== undefined) {
+      if (
+        node !== undefined &&
+        !visitedNodes.some(
+          (vnode) => vnode.row === node.row && vnode.col === node.col
+        )
+      ) {
         setTimeout(
           (board) => {
             if (type === "path") {
@@ -46,6 +52,7 @@ const SEARCHDOM = () => {
           board
         );
         num++;
+        visitedNodes.push(node);
       }
     });
     return num;
@@ -151,8 +158,8 @@ const SEARCHDOM = () => {
             type="range"
             className="form-control-range"
             id="customRange1"
-            min="10"
-            max="40"
+            min="5"
+            max="35"
             value={boardSize}
             onChange={(e) => setBoardSize(parseInt(e.target.value))}
           />
