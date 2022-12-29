@@ -18,6 +18,9 @@ function NAVDOM() {
             <Nav.Link as={Link} to="AiGames/maze/">
               Maze Search
             </Nav.Link>
+            <Nav.Link as={Link} to="AiGames/sort/">
+              Sorting Algorithms
+            </Nav.Link>
             <NavDropdown title="Games" id="games-dropdown">
               <NavDropdown.Item as={Link} to="AiGames/game/tictactoe">
                 Tic Tac Toe
