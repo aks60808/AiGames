@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./components/root/domt";
 import ConnectFourGame from "./games/connectfour/dom";
 import TicTacToe from "./games/tictactoe/dom";
+import SudokuSolver from "./games/soduko/dom";
 import SortDom from "./sorting/sorterDom";
 import NAVDOM from "./nav";
 import "./App.css";
@@ -22,6 +23,7 @@ function App() {
             element={<ConnectFourGame />}
           />
           <Route path="AiGames/game/tictactoe" element={<TicTacToe />} />
+          <Route path="AiGames/game/sudoku" element={<SudokuSolver />} />
         </Routes>
       </BrowserRouter>
     </>

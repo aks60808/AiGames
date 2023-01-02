@@ -28,6 +28,9 @@ function NAVDOM() {
               <NavDropdown.Item as={Link} to="AiGames/game/connectfour">
                 Connect Four
               </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="AiGames/game/sudoku">
+                Sudoku
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
