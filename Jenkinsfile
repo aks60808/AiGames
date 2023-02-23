@@ -33,7 +33,7 @@ pipeline {
 		stage('Compile') {
 			steps {
 				sh "npm install &> /dev/nul"
-				echo "npm install succeeded"
+				sh "echo npm install succeeded"
 			}
 		}
 		stage('Unit Test'){
