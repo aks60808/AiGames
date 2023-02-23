@@ -41,40 +41,20 @@ pipeline {
 				sh "npm test -- --watchAll=false"
 			}
 		}
-		
-		// stage('Integration Test') {
-		// 	steps {
-		// 		sh "mvn failsafe:integration-test failsafe:verify"
-		// 	}
-		// }
-
-		// stage('Package') {
-		// 	steps {
-		// 		sh "mvn package -DskipTests"
-		// 	}
-		// }
-
-		// stage('Build Docker Image') {
-		// 	steps {
-		// 		script {
-		// 			dockerImage = docker.build("in28min/currency-exchange-devops:${env.BUILD_TAG}")
-		// 		}
-
-		// 	}
-		// }
-
-		// stage('Push Docker Image') {
-		// 	steps {
-		// 		script {
-		// 			docker.withRegistry('', 'dockerhub') {
-		// 				dockerImage.push();
-		// 				dockerImage.push('latest');
-		// 			}
-		// 		}
-		// 	}
-		// }
-	} 
-	
+		stage('Docker Image build up'){
+			steps{
+				dockerImage = docker.build("asia.gcr.io/aigames-378310/aigames:$env.BUILD_TAG")
+			}
+		}
+		stage('Push to Google Container Registry'){
+			steps{
+				script {
+					docker.withRegistry('asia.gcr.io/aigames-378310/') {
+						dockerImage.push();
+						dockerImage.push('latest');
+					}
+			}
+		}
 	post {
 		always {
 			echo 'Im awesome. I run always'
