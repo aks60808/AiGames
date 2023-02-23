@@ -20,10 +20,17 @@ pipeline {
 				echo "BUILD_URL - $env.BUILD_URL"
 			}
 		}
+		stage('Clone from github'){
+			steps{
+				echo 'Make the output directory'
+				sh 'mkdir -p build'
+				dir('build') {
+          			git branch: "master", url: "https://github.com/aks60808/AiGames"
+      			}     
+			}
+		}
 		stage('Compile') {
 			steps {
-				sh "git clone https://github.com/aks60808/AiGames"
-				sh "cd /AiGames"
 				sh "npm install"
 			}
 		}
