@@ -43,7 +43,7 @@ pipeline {
 		}
 		stage('Docker Image build up'){
 			steps{
-				dockerImage = docker.build("asia.gcr.io/aigames-378310/aigames:$env.BUILD_TAG")
+				def dockerImage = docker.build("asia.gcr.io/aigames-378310/aigames:$env.BUILD_TAG")
 			}
 		}
 		stage('Push to Google Container Registry'){
