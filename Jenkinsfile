@@ -3,7 +3,7 @@
 //DECLARATIVE
 pipeline {
 	agent any
-	tools {nodejs "node"}
+	tools {nodejs "MyNodeJS"}
 	environment {
 		dockerHome = tool 'MyDocker'
 		PATH = "$dockerHome/bin:$PATH"
