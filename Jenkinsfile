@@ -32,12 +32,13 @@ pipeline {
 		}
 		stage('Compile') {
 			steps {
-				sh "npm install"
+				sh "npm install &> /dev/nul"
+				echo "npm install succeeded"
 			}
 		}
 		stage('Unit Test'){
 			steps{
-				sh "npm test -- -watchAll= false"
+				sh "npm test -- --watchAll=false"
 			}
 		}
 		
