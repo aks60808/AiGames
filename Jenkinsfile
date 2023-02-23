@@ -32,7 +32,7 @@ pipeline {
 		}
 		stage('Compile') {
 			steps {
-				sh "npm install &> /dev/nul"
+				sh "npm install --silent"
 				sh "echo npm install succeeded"
 			}
 		}
