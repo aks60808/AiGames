@@ -2,7 +2,7 @@
 
 //DECLARATIVE
 pipeline {
-	agent { docker{ image "node:19-alpine3.16"}}
+	agent any
 	environment {
 		dockerHome = tool 'MyDocker'
 		PATH = "$dockerHome/bin:$PATH"
