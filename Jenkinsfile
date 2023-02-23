@@ -2,12 +2,11 @@
 
 //DECLARATIVE
 pipeline {
-	agent any
+	agent { docker{ image "node:19-alpine3.16"}}
 	environment {
 		dockerHome = tool 'MyDocker'
 		PATH = "$dockerHome/bin:$PATH"
 	}
-
 	stages {
 		stage('Checkout') {
 			steps {
@@ -21,12 +20,18 @@ pipeline {
 				echo "BUILD_URL - $env.BUILD_URL"
 			}
 		}
-		// stage('Compile') {
-		// 	steps {
-		// 		sh "mvn clean compile"
-		// 	}
-		// }
-
+		stage('Compile') {
+			steps {
+				sh "git clone https://github.com/aks60808/AiGames"
+				sh "cd /AiGames"
+				sh "npm install"
+			}
+		}
+		stage('Unit Test'){
+			steps{
+				sh "npm test -- -watchAll= false"
+			}
+		}
 		
 		// stage('Integration Test') {
 		// 	steps {
