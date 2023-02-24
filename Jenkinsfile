@@ -51,7 +51,7 @@ pipeline {
 		stage('Push to Google Container Registry'){
 			steps{
 				script {
-					docker.withRegistry('asia.gcr.io/aigames-378310/','aigames-378310') {
+					docker.withRegistry('asia.gcr.io/aigames-378310/','gcr:jenkin-storage') {
 						dockerImage.push();
 						dockerImage.push('latest');
 					}
