@@ -5,7 +5,7 @@ describe("minmaxAlphaBeta", () => {
     const answer = 1;
 
     // Call the minmaxAlphaBeta function and check the return value
-    expect(answer).toBe(1);
+    expect(answer).toBe(2);
   });
   // it("should return the best move for the current player", () => {
   //   // Create a mock state object with some fake possible moves
