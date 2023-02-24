@@ -70,7 +70,7 @@ pipeline {
 	}
 	post {
 		always {
-			echo 'Im awesome. I run always'
+			echo 'CICD pipeline operation compelted'
 		}
 		success {
 			echo 'I run when you are successful'
