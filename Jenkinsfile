@@ -1,4 +1,3 @@
-//SCRIPTED
 
 //DECLARATIVE
 pipeline {
@@ -62,7 +61,9 @@ pipeline {
 		}
 		stage('Deploy to Deployment Server'){
 			steps{
-				
+				ansiblePlaybook("$HOME/ansible_deployment.yml") {
+                inventoryPath('$HOME/ansible_inventory')
+				}
 			}
 		}
 	}
