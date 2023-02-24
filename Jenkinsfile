@@ -50,6 +50,8 @@ pipeline {
 		}
 		stage('Push to Google Container Registry'){
 			steps{
+				sh "gcloud auth activate-service-account  --key-file=$HOME/key.json"
+		        sh "gcloud auth configure-docker"
 				script {
 					docker.withRegistry('https://asia.gcr.io/aigames-378310/') {
 						dockerImage.push();
