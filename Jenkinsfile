@@ -57,8 +57,13 @@ pipeline {
 						dockerImage.push();
 						dockerImage.push('latest');
 					}
+				}
 			}
 		}
+		stage('Deploy to Deployment Server'){
+			steps{
+				
+			}
 		}
 	}
 	post {
