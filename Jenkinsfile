@@ -67,7 +67,7 @@ pipeline {
 				}
 			}
 		}
-	}
+	
 	post {
 		always {
 			echo 'CICD pipeline operation compelted'
