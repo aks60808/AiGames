@@ -31,13 +31,18 @@ pipeline {
 		}
 		stage('Compile') {
 			steps {
-				sh "npm install --silent"
-				sh "echo npm install succeeded"
+				dir('build') {
+          			sh "npm install --silent"
+					sh "echo npm install succeeded"
+      			}   
 			}
 		}
 		stage('Unit Test'){
 			steps{
-				sh "npm test -- --watchAll=false"
+				dir('build') {
+          			sh "npm test -- --watchAll=false"
+      			}   
+				
 			}
 		}
 		stage('Docker Image build up'){
@@ -62,6 +67,7 @@ pipeline {
 		stage('Deploy to Deployment Server'){
 			steps{
 				script{
+				
 			        ansiblePlaybook becomeUser: null, credentialsId: 'cicd-keys', inventory: '/etc/ansible/hosts', playbook: '/var/lib/jenkins/ansible_deployment.yml'
 			    }
 				}
