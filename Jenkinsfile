@@ -6,6 +6,9 @@ pipeline {
 	environment {
 		dockerHome = tool 'MyDocker'
 		PATH = "$dockerHome/bin:$PATH"
+		PROJECT_ID = "test-aigame"   
+		CICD_SSH_CRED_ID = "cicd-ssh-key"
+		GIT_REPO = "https://github.com/aks60808/AiGames"
 	}
 	stages {
 		stage('Checkout') {
@@ -25,7 +28,7 @@ pipeline {
 				echo 'Make the output directory'
 				sh 'mkdir -p build'
 				dir('build') {
-          			git branch: "master", url: "https://github.com/aks60808/AiGames"
+          			git branch: "master", url: "${GIT_REPO}"
       			}     
 			}
 		}
@@ -48,7 +51,7 @@ pipeline {
 		stage('Docker Image build up'){
 			steps{
 				script{
-					dockerImage = docker.build("asia.gcr.io/aigames-378310/aigames:$env.BUILD_TAG")
+					dockerImage = docker.build("asia.gcr.io/${PROJECT_ID}/aigames:$env.BUILD_TAG")
 				}
 			}
 		}
@@ -57,7 +60,7 @@ pipeline {
 				sh "gcloud auth activate-service-account  --key-file=$HOME/key.json"
 		        sh "gcloud auth configure-docker"
 				script {
-					docker.withRegistry('https://asia.gcr.io/aigames-378310/') {
+					docker.withRegistry("https://asia.gcr.io/${PROJECT_ID}/") {
 						dockerImage.push();
 						dockerImage.push('latest');
 					}
@@ -68,7 +71,7 @@ pipeline {
 			steps{
 				script{
 				
-			        ansiblePlaybook becomeUser: null, credentialsId: 'cicd-keys', inventory: '/etc/ansible/hosts', playbook: '/var/lib/jenkins/ansible_deployment.yml'
+			        ansiblePlaybook becomeUser: null, credentialsId: "${CICD_SSH_CRED_ID}", inventory: '/etc/ansible/hosts', playbook: '/var/lib/jenkins/ansible_deployment.yml'
 			    }
 				}
 			}
